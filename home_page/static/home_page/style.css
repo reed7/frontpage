@@ -1,0 +1,74 @@
+body {
+    margin: 0px;
+    font-family: "Gotham SSm A","Gotham SSm B",Montserrat,Helvetica,sans-serif;
+    font-size: 2.4em;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.outer {
+    margin: 150px 100px;
+}
+
+.portrait_box {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.qa_list {
+    margin-top: 2em;
+    padding: 0px;
+    list-style: none;
+}
+
+.qa_question {
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    color: rgba(0, 0, 0, .2);
+    padding: 0px;
+}
+
+.qa_answer {
+    font-size: .7em;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+#portrait {
+    width: 450px;
+}
+
+footer {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    min-height: 600px;
+    min-height: 100vh;
+    margin-top: 250px;
+    background-color: rgba(0, 0, 0, .2);
+}
+
+.contact_bar {
+    margin:auto;
+    text-align: center;
+    width: 75%;
+}
+
+.contact_ele {
+    position: relative;
+    display: inline-block;
+    width: 24%;
+    line-height: 1;
+    border: 0;
+}
+
+.contact_ele svg {
+    position: relative;
+    width: 70%;
+    z-index: 2;
+}

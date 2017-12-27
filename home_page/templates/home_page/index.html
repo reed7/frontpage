@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reed Zhong</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home_page/style.css' %}" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+    <script type="text/javascript">
+        $( function() {
+                $("#qa_list button").hover(
+                    function() { $(this).animate({backgroundColor: "rgba(0, 0, 0, .1)"}, 80)},
+                    function() { $(this).animate({backgroundColor: "rgba(0, 0, 0, 0)"}, 80)}
+                 );
+
+                 $("#how_contact").click(
+                    function() {
+                        $('html, body').animate({scrollTop: $(document).height()}, 'slow');
+                        return false;
+                    }
+                 );
+
+                $("#contact_bar svg").hover(
+                    function() { $(this).animate({backgroundColor: "rgba(0, 0, 0, .3)"}, 80)},
+                    function() { $(this).animate({backgroundColor: "rgba(0, 0, 0, 0)"}, 80)}
+                );
+
+                $("#portrait").hover(
+                    function() { $(this).attr('src', '{% static 'home_page/images/portrait_color.jpg' %}') },
+                    function() { $(this).attr('src', '{% static 'home_page/images/portrait.jpg' %}') }
+                );
+            }
+        );
+    </script>
+</head>
+<body>
+    <article class="outer">
+        <p>
+            {{ profile.greeting }}
+        </p>
+        <div class="portrait_box">
+            <image id="portrait" src="{% static 'home_page/images/portrait.jpg' %}"></image>
+        </div>
+        <p>
+            {{ profile.about }}
+        </p>
+        <div>
+            <ul id="qa_list" class="qa_list">
+                {% for q in qa %}
+                <li>
+                    <button id="qa_question_{{ forloop.counter }}" class="qa_question">
+                        <span>{{ q.question }}</span>
+                    </button>
+                    <div id="qa_answer_{{ forloop.counter }}" class="qa_answer">
+                        {{ q.answer }}
+                    </div>
+                    <script type="text/javascript">
+                        answer_showed_{{ forloop.counter }} = false;
+                        $("#qa_question_{{ forloop.counter }}").click(
+                            function() {
+                                if(answer_showed_{{ forloop.counter }}) {
+                                    $("#qa_answer_{{ forloop.counter }}").hide("blind", 500);
+                                    answer_showed_{{ forloop.counter }} = false;
+                                } else {
+                                    $("#qa_answer_{{ forloop.counter }}").show("blind", 500);
+                                    answer_showed_{{ forloop.counter }} = true;
+                                }
+                            }
+                        );
+                    </script>
+                </li>
+                {% endfor %}
+                <button id="how_contact" class="qa_question">
+                        <span>How to contact me?</span>
+                </button>
+            </ul>
+        </div>
+    </article>
+    <footer id="footer">
+        <section id="contact_bar" class="contact_bar">
+            {% for cm in profile.contactmethod_set.all %}
+            <a href="{{ cm.address }}" class="contact_ele" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path fill="#fff" d="{{ svg_path|get_item:cm.contact_type }}"></path>
+                </svg>
+            </a>
+            {% endfor %}
+        </section>
+    </footer>
+</body>
+</html>
