@@ -3,37 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Reed Zhong</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'home_page/style.css' %}" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home_page/css/style.css' %}" />
     <script type="text/javascript">
-        $( function() {
-                $("#qa_list button").hover(
-                    function() { $(this).animate({backgroundColor: "rgba(0, 0, 0, .1)"}, 80)},
-                    function() { $(this).animate({backgroundColor: "rgba(0, 0, 0, 0)"}, 80)}
-                 );
-
-                 $("#how_contact").click(
-                    function() {
-                        $('html, body').animate({scrollTop: $(document).height()}, 'slow');
-                        return false;
-                    }
-                 );
-
-                $("#contact_bar svg").hover(
-                    function() { $(this).animate({backgroundColor: "rgba(0, 0, 0, .3)"}, 80)},
-                    function() { $(this).animate({backgroundColor: "rgba(0, 0, 0, 0)"}, 80)}
-                );
-
-                $("#portrait").hover(
-                    function() { $(this).attr('src', '{% static 'home_page/images/portrait_color.jpg' %}') },
-                    function() { $(this).attr('src', '{% static 'home_page/images/portrait.jpg' %}') }
-                );
-            }
-        );
+        // Will be used in main.js
+        var color_portrait = "{% static 'home_page/images/portrait_color.jpg' %}";
+        var bw_portrait = "{% static 'home_page/images/portrait.jpg' %}";
     </script>
+    <script type="text/javascript" src="{% static 'home_page/js/main.js' %}"></script>
 </head>
 <body>
     <article class="outer">
@@ -54,7 +35,9 @@
                         <span>{{ q.question }}</span>
                     </button>
                     <div id="qa_answer_{{ forloop.counter }}" class="qa_answer">
+                        {% autoescape off %}
                         {{ q.answer }}
+                        {% endautoescape %}
                     </div>
                     <script type="text/javascript">
                         answer_showed_{{ forloop.counter }} = false;
@@ -76,6 +59,10 @@
                         <span>How to contact me?</span>
                 </button>
             </ul>
+        </div>
+        <div class="mask"></div>
+        <div class="photo-box" title="Click to dismiss">
+            <image src="{% static 'home_page/images/autox.jpg' %}" ></image>
         </div>
     </article>
     <footer id="footer">
