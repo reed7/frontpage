@@ -30,6 +30,7 @@ body {
 
 .qa_question {
     cursor: pointer;
+    background-color: transparent;
     border: 0;
     outline: 0;
     font: inherit;
