@@ -26,8 +26,7 @@ $(function() {
     $("#show_autox").click(function() {
         $(".mask").show("blind", 300);
         $('.photo-box').css({
-            left: ( $(window).width() - $('.photo-box').width() ) / 2,
-            top: ( $(window).height() - $('.photo-box').height() ) / 2
+            'padding-top': ($(window).height() - 470)/2 // vertical center
         });
         $('.photo-box').show("blind", 400);
 
