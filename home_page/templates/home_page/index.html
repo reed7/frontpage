@@ -19,7 +19,9 @@
 <body>
     <article class="outer">
         <p>
+            {% autoescape off %}
             {{ profile.greeting }}
+            {% endautoescape %}
         </p>
         <div class="portrait_box">
             <image id="portrait" src="{% static 'home_page/images/portrait.jpg' %}"></image>
